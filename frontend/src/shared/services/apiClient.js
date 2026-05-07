@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { env } from '../config/env'
 import { logger } from '../utils/logger'
-import useAuthStore from '../../app/store'
+import { useAuthStore } from '../store/authStore'
 
 const apiClient = axios.create({
   baseURL: env.API_BASE_URL,

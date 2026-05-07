@@ -25,6 +25,15 @@ const permissionsSchema = z
     reprintGatePass: z.boolean().optional(),
     changeOwnPassword: z.boolean().optional(),
     viewActiveSessions: z.boolean().optional(),
+    manageProjects: z.boolean().optional(),
+    viewProjects: z.boolean().optional(),
+    manageTasks: z.boolean().optional(),
+    viewTasks: z.boolean().optional(),
+    createEntries: z.boolean().optional(),
+    manageEntries: z.boolean().optional(),
+    viewEntries: z.boolean().optional(),
+    manageChat: z.boolean().optional(),
+    viewChat: z.boolean().optional(),
   })
   .optional();
 
@@ -59,9 +68,9 @@ export const createUserSchema = z.object({
       ),
     designation: z.string().trim().optional().nullable(),
     department: objectId,
-    userRole: z.enum(["manager", "operator"], {
+    userRole: z.enum(["manager", "operator", "employee"], {
       required_error: "Role is required",
-      invalid_type_error: "Role must be manager or operator",
+      invalid_type_error: "Role must be manager, operator, or employee",
     }),
     permissions: permissionsSchema,
   }),
@@ -93,7 +102,7 @@ export const updateUserByAdminSchema = z.object({
     email: z.string().trim().email("Invalid email").optional().nullable(),
     designation: z.string().trim().optional().nullable(),
     department: objectId,
-    userRole: z.enum(["manager", "operator"]).optional(),
+    userRole: z.enum(["manager", "operator", "employee"]).optional(),
     permissions: permissionsSchema,
   }),
 });
@@ -108,7 +117,7 @@ export const userIdParamSchema = z.object({
 // ─── Get All Users — Query Filters ───────────────────────────────────────────
 export const getAllUsersSchema = z.object({
   query: z.object({
-    role: z.enum(["admin", "manager", "operator"]).optional(),
+    role: z.enum(["admin", "manager", "operator", "employee"]).optional(),
     isActive: z
       .string()
       .transform((v) => v === "true")

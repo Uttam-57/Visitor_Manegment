@@ -24,8 +24,9 @@ const ChangePassword = () => {
     setIsLoading(true);
     try {
       const res = await api.post("/auth/change-password", {
-        currentPassword,
+        oldPassword: currentPassword,
         newPassword,
+        confirmPassword,
       });
       setMessage(res.data?.message || "Password changed successfully.");
       setCurrentPassword("");

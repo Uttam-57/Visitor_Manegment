@@ -14,6 +14,15 @@ const defaultAdminPermissions = {
   reprintGatePass: true,
   changeOwnPassword: true,
   viewActiveSessions: true,
+  manageProjects: true,
+  viewProjects: true,
+  manageTasks: true,
+  viewTasks: true,
+  createEntries: true,
+  manageEntries: true,
+  viewEntries: true,
+  manageChat: true,
+  viewChat: true,
 };
 
 const defaultManagerPermissions = {
@@ -22,12 +31,21 @@ const defaultManagerPermissions = {
   approveGatePass: true,
   checkInOut: true,
   cancelGatePass: true,
-  viewReports: false,
+  viewReports: true,
   manageSystemUsers: false,
   companySettings: false,
   reprintGatePass: false,
   changeOwnPassword: true,
   viewActiveSessions: true,
+  manageProjects: true,
+  viewProjects: true,
+  manageTasks: true,
+  viewTasks: true,
+  createEntries: true,
+  manageEntries: true,
+  viewEntries: true,
+  manageChat: true,
+  viewChat: true,
 };
 
 const defaultOperatorPermissions = {
@@ -42,12 +60,24 @@ const defaultOperatorPermissions = {
   reprintGatePass: false,
   changeOwnPassword: true,
   viewActiveSessions: true,
+  manageProjects: false,
+  viewProjects: true,
+  manageTasks: false,
+  viewTasks: true,
+  createEntries: true,
+  manageEntries: false,
+  viewEntries: true,
+  manageChat: false,
+  viewChat: true,
 };
+
+const defaultEmployeePermissions = { ...defaultOperatorPermissions };
 
 export const ROLE_DEFAULT_PERMISSIONS = {
   admin: defaultAdminPermissions,
   manager: defaultManagerPermissions,
   operator: defaultOperatorPermissions,
+  employee: defaultEmployeePermissions,
 };
 
 // ─── User Schema ──────────────────────────────────────────────────────────────
@@ -111,8 +141,8 @@ const userSchema = new mongoose.Schema(
     userRole: {
       type: String,
       enum: {
-        values: ["admin", "manager", "operator"],
-        message: "Role must be admin, manager, or operator",
+        values: ["admin", "manager", "operator", "employee"],
+        message: "Role must be admin, manager, operator, or employee",
       },
       required: [true, "User role is required"],
     },

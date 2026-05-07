@@ -4,7 +4,8 @@ import { Button } from "../../shared/ui/atoms/Button";
 import api from "../../shared/services/api";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
+  const [companyId, setCompanyId] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -16,7 +17,7 @@ const ForgotPassword = () => {
     setError("");
 
     try {
-      const res = await api.post("/auth/forgot-password", { email });
+      const res = await api.post("/auth/forgot-password", { companyId, userEmail });
       setMessage(res.data?.message || "If the email exists, a reset link has been sent.");
     } catch (err) {
       setError(err.response?.data?.message || "Unable to request password reset.");
@@ -46,12 +47,21 @@ const ForgotPassword = () => {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <Input
-          id="email"
+          id="companyId"
+          label="Company ID"
+          type="text"
+          placeholder="Enter your company ID"
+          value={companyId}
+          onChange={(e) => setCompanyId(e.target.value)}
+          required
+        />
+        <Input
+          id="userEmail"
           label="Email Address"
           type="email"
           placeholder="name@company.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={userEmail}
+          onChange={(e) => setUserEmail(e.target.value)}
           required
         />
 

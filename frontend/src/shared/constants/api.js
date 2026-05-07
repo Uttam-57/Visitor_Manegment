@@ -38,4 +38,29 @@ export const apiEndpoints = {
     BY_ID: (id) => `/gate-passes/${id}`,
     STATUS: (id) => `/gate-passes/${id}/status`,
   },
+  PROJECTS: {
+    BASE: "/projects",
+    BY_ID: (id) => `/projects/${id}`,
+  },
+  TASKS: {
+    BASE: "/tasks",
+    BY_ID: (id) => `/tasks/${id}`,
+  },
+  ENTRIES: {
+    BASE: "/entries",
+    BY_ID: (id) => `/entries/${id}`,
+    STATUS: (id) => `/entries/${id}/status`,
+  },
+  REPORTS: {
+    DAILY_LOGS: "/reports/daily-logs",
+    TIMESHEET_SUMMARY: "/reports/timesheet-summary",
+    PROJECT_PROGRESS: "/reports/project-progress",
+    TASK_STATUS: "/reports/task-status",
+    ATTENDANCE: "/reports/attendance",
+    MISSING_ENTRIES: "/reports/missing-entries",
+  },
+  CHAT: {
+    CONVERSATIONS: "/chat/conversations",
+    MESSAGES: (id) => `/chat/conversations/${id}/messages`,
+  },
 };

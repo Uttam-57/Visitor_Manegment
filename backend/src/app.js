@@ -17,6 +17,11 @@ import departmentRoutes from "./features/department/department.routes.js";
 import employeeRoutes from "./features/employee/employee.routes.js";
 import gatePassRoutes from "./features/gate_pass/gate_pass.routes.js";
 import settingRoutes from "./features/settings/setting.routes.js";
+import projectRoutes from "./features/project/project.routes.js";
+import taskRoutes from "./features/task/task.routes.js";
+import entryRoutes from "./features/entry/entry.routes.js";
+import reportRoutes from "./features/reports/reports.routes.js";
+import chatRoutes from "./features/chat/chat.routes.js";
 
 
 // Load environment variables from .env file
@@ -88,6 +93,11 @@ app.use("/api/departments", departmentRoutes);
 app.use("/api/employees", employeeRoutes);
 app.use("/api/gate-passes", gatePassRoutes);
 app.use("/api/settings", settingRoutes);
+app.use("/api/projects", projectRoutes);
+app.use("/api/tasks", taskRoutes);
+app.use("/api/entries", entryRoutes);
+app.use("/api/reports", reportRoutes);
+app.use("/api/chat", chatRoutes);
 
 // Handle undefined routes
 app.use((req, res, next) => {

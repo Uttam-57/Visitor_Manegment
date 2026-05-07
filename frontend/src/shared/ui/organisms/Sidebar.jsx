@@ -1,16 +1,21 @@
 import { Link, useLocation } from "react-router-dom";
 import { clsx } from "clsx";
+import { ROUTES } from "../../constants/routes";
 
 const Sidebar = () => {
   const location = useLocation();
 
   const navItems = [
-    { label: "Dashboard", path: "/dashboard", icon: "📊" },
-    { label: "Gate Pass", path: "/gatepass", icon: "🎟️" },
-    { label: "Users", path: "/users", icon: "👥" },
-    { label: "Settings", path: "/settings", icon: "⚙️" },
-    { label: "Reports", path: "/reports", icon: "📈" },
-    { label: "Change Pass", path: "/change-password", icon: "🔐" },
+    { label: "Dashboard", path: ROUTES.DASHBOARD, icon: "📊" },
+    { label: "Projects", path: ROUTES.PROJECTS, icon: "📁" },
+    { label: "Tasks", path: ROUTES.TASKS, icon: "✅" },
+    { label: "Entries", path: ROUTES.ENTRIES, icon: "🗓️" },
+    { label: "Gate Pass", path: ROUTES.GATE_PASS, icon: "🎟️" },
+    { label: "Reports", path: ROUTES.REPORTS, icon: "📈" },
+    { label: "Chat", path: ROUTES.CHAT, icon: "💬" },
+    { label: "Users", path: ROUTES.USERS, icon: "👥" },
+    { label: "Settings", path: ROUTES.SETTINGS, icon: "⚙️" },
+    { label: "Change Password", path: ROUTES.CHANGE_PASSWORD, icon: "🔐" },
   ];
 
   return (

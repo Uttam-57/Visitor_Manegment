@@ -25,7 +25,10 @@ const ResetPassword = () => {
 
     setIsLoading(true);
     try {
-      const res = await api.post(`/auth/reset-password/${token}`, { newPassword: password });
+      const res = await api.post(`/auth/reset-password/${token}`, {
+        newPassword: password,
+        confirmPassword,
+      });
       setMessage(res.data?.message || "Password reset successful. Please log in.");
       setTimeout(() => navigate("/auth/login"), 1200);
     } catch (err) {

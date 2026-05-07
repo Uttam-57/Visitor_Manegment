@@ -2,7 +2,9 @@ import { forwardRef } from "react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export const Input = forwardRef(({ className, label, error, id, ...props }, ref) => {
+export const Input = forwardRef(({ className, label, error, hasError = false, id, ...props }, ref) => {
+  const showError = Boolean(error);
+  const isError = hasError || showError;
   return (
     <div className="w-full">
       {label && (
@@ -19,7 +21,7 @@ export const Input = forwardRef(({ className, label, error, id, ...props }, ref)
         className={twMerge(
           clsx(
             "block w-full rounded-lg border bg-surface-light dark:bg-surface-dark px-4 py-2.5 text-slate-900 dark:text-slate-100 shadow-sm transition-colors focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm",
-            error
+            isError
               ? "border-red-500 focus:border-red-500 focus:ring-red-500"
               : "border-slate-300 dark:border-slate-700",
             className
@@ -27,9 +29,11 @@ export const Input = forwardRef(({ className, label, error, id, ...props }, ref)
         )}
         {...props}
       />
-      {error && <p className="mt-1.5 text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {showError && <p className="mt-1.5 text-sm text-red-600 dark:text-red-400">{error}</p>}
     </div>
   );
 });
 
 Input.displayName = "Input";
+
+export default Input;

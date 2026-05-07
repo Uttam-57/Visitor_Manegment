@@ -21,12 +21,14 @@ export const Button = ({
   size = "md",
   className,
   isLoading,
+  loading,
   disabled,
   ...props
 }) => {
+  const isBusy = Boolean(loading ?? isLoading);
   return (
     <button
-      disabled={isLoading || disabled}
+      disabled={isBusy || disabled}
       className={twMerge(
         clsx(
           "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed",
@@ -37,7 +39,7 @@ export const Button = ({
       )}
       {...props}
     >
-      {isLoading && (
+      {isBusy && (
         <svg
           className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
           xmlns="http://www.w3.org/2000/svg"
@@ -56,3 +58,5 @@ export const Button = ({
     </button>
   );
 };
+
+export default Button;
